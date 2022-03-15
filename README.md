@@ -5,6 +5,7 @@ refer: [飞桨官网:文档:硬件支持:自定义硬件接入](https://www.padd
 
 ## 前提
 安装[PaddlePaddle develop最新版本](https://github.com/PaddlePaddle/Paddle)
+
 方式1：使用Paddle官网[Nightly build](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html)
 ```
 python -m pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/linux/cpu-mkl/develop.html
