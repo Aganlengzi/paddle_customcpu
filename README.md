@@ -1,11 +1,17 @@
 # paddle_customcpu
 A customcpu demo for paddlepaddle-plugin device
-refer: [飞桨官网:文档:硬件支持:自定义硬件接入](https://www.paddlepaddle.org.cn/documentation/docs/zh/guides/09_hardware_support/index_cn.html)
+
+refer: [飞桨官网:文档:硬件支持:自定义硬件接入](https://www.paddlepaddle.org.cn/documentation/docs/zh/develop/guides/09_hardware_support/custom_device_docs/index_cn.html)
 
 ## 前提
 安装[PaddlePaddle develop最新版本](https://github.com/PaddlePaddle/Paddle)
+方式1：使用Paddle官网[Nightly build](https://www.paddlepaddle.org.cn/install/quick?docurl=/documentation/docs/zh/develop/install/pip/linux-pip.html)
 ```
 python -m pip install paddlepaddle==0.0.0 -f https://www.paddlepaddle.org.cn/whl/linux/cpu-mkl/develop.html
+```
+方式2：使用develop源码编译CPU-Linux版本
+```
+cmake .. -DPY_VERSION=3.7 -DWITH_GPU=OFF -DWITH_TESTING=OFF -DCMAKE_BUILD_TYPE=Release
 ```
 
 ## 编译
