@@ -26,12 +26,14 @@ void AddKernel(const Context& dev_ctx,
 
 } // namespace custom_cpu
 
-// 全局命名空间
+// 全局命名空间内使用注册宏完成Kernel注册
 // CustomCPU的AddKernel注册
 // 参数： add - Kernel名称
 //       CustomCPU - 后端名称
 //       ALL_LAYOUT - 内存布局
 //       custom_cpu::AddKernel - Kernel函数名
+//       int - 数据类型名
+//       int64_t - 数据类型名
 //       float - 数据类型名
 //       double - 数据类型名
 //       phi::dtype::float16 - 数据类型名

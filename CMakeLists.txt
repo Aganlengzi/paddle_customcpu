@@ -3,25 +3,25 @@ cmake_minimum_required(VERSION 3.10)
 project(paddle-custom_cpu CXX C)
 
 set(PLUGIN_NAME        "paddle_custom_cpu")
-set(PLUGIN_VERSION      "0.0.1")
+set(PLUGIN_VERSION     "0.0.1")
 
 set(PADDLE_PLUGIN_DIR  "/opt/conda/lib/python3.7/site-packages/paddle-plugins/")
 set(PADDLE_INC_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/include/")
 set(PADDLE_LIB_DIR     "/opt/conda/lib/python3.7/site-packages/paddle/fluid/")
 
-# third-party deps
-set(BOOST_INC_DIR      "/workspace/dev/Paddle/build/third_party/boost/src/extern_boost")
-set(GFLAGS_INC_DIR     "/workspace/dev/Paddle/build/third_party/install/gflags/include")
-set(GLOG_INC_DIR       "/workspace/dev/Paddle/build/third_party/install/glog/include")
-set(THREAD_INC_DIR     "/workspace/dev/Paddle/build/third_party/threadpool/src/extern_threadpool")
-set(THIRD_PARTY_INC_DIR ${BOOST_INC_DIR} ${GFLAGS_INC_DIR} ${GLOG_INC_DIR} ${THREAD_INC_DIR})
+############ 三方依赖，此Demo中使用Paddle相同依赖
+set(BOOST_INC_DIR      "/workspace/tmp/Paddle/build/third_party/boost/src/extern_boost")
+set(GFLAGS_INC_DIR     "/workspace/tmp/Paddle/build/third_party/install/gflags/include")
+set(GLOG_INC_DIR       "/workspace/tmp/Paddle/build/third_party/install/glog/include")
+set(MKLDNN_INC_DIR     "/workspace/tmp/Paddle/build/third_party/install/mkldnn/include")
+set(THIRD_PARTY_INC_DIR ${BOOST_INC_DIR} ${GFLAGS_INC_DIR} ${GLOG_INC_DIR} ${MKLDNN_INC_DIR})
 
 include_directories(${PADDLE_INC_DIR} ${THIRD_PARTY_INC_DIR})
 link_directories(${PADDLE_LIB_DIR})
 
-# pre-defined macro
-add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext temporarily
-add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate temporarily
+add_definitions(-DPADDLE_WITH_CUSTOM_DEVICE)  # for out CustomContext
+add_definitions(-DPADDLE_WITH_CUSTOM_KERNEL)  # for out fluid seperate
+add_definitions(-DPADDLE_WITH_MKLDNN)  # for out MKLDNN compiling
 
 ############ 编译插件
 add_library(${PLUGIN_NAME} SHARED runtime.cc add_kernel.cc)

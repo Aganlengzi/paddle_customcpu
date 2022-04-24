@@ -1,5 +1,4 @@
-#include "paddle/phi/extension.h"
-
+#include "paddle/phi/backends/device_ext.h"
 #include <malloc.h>
 
 static size_t global_total_mem_size = 1 * 1024 * 1024 * 1024UL;
@@ -97,15 +96,11 @@ C_Status get_min_chunk_size(const C_Device device, size_t *size) {
 
 void InitPlugin(CustomRuntimeParams *params) {
   // 将检查版本兼容性并填充插件使用的自定义 Runtime 版本信息
-  //PADDLE_CUSTOM_RUNTIME_CHECK_VERSION(params);
+  PADDLE_CUSTOM_RUNTIME_CHECK_VERSION(params);
 
   // 填充 Runtime 基本信息
   params->device_type = "CustomCPU";
   params->sub_device_type = "V1";
-  params->version.major = PADDLE_CUSTOM_RUNTIME_MAJOR_VERSION;
-  params->version.minor = PADDLE_CUSTOM_RUNTIME_MINOR_VERSION;
-  params->version.patch = PADDLE_CUSTOM_RUNTIME_PATCH_VERSION;
-
 
   // 注册 Runtime API
   params->interface->set_device = set_device;
